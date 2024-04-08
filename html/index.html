@@ -13,8 +13,12 @@
 
     <!-- CSS_ANCHOR -->
     <link rel="stylesheet" href="libs/jquery-ui-1.13.2.min.css" type="text/css">
+    <link rel="stylesheet" href="libs/jquery-ui-theme-1.13.2.css" type="text/css"/>
+    <link rel="stylesheet" href="libs/jquery-ui-structure-1.13.2.css" type="text/css"/>
     <link rel="stylesheet" href="libs/ol-8.2.0.css" type="text/css" />
     <link rel="stylesheet" href="libs/ol-layerswitcher-4.1.1.css" type="text/css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     <link rel="stylesheet" href="style.css" type="text/css" />
 
     <link rel="icon" type="image/png" href="images/tar1090-favicon.png">
@@ -26,6 +30,7 @@
     <!-- BODY_ANCHOR -->
     <div id="layout_container">
 
+      <!-- floating infoblock appears on mouse hover -->
       <div id="highlighted_infoblock" style="pointer-events: none">
         <div class="highlightedTitle infoBlockSection">
           <div>
@@ -67,7 +72,7 @@
         </div>
       </div>
 
-
+      <!-- left infoblock appears on mouse click -->
       <div id="selected_infoblock" style="display: none">
         <div id="infoblock_close" class="infoblockCloseBox"></div>
         <div id="infoblock-container">
@@ -194,7 +199,7 @@
               </tr>
               <tr>
                 <td>
-                  <span class="infoHeading" title="ICAO type description (L/S/H Landplane/Seaplane/Helicopter 1/2/3/4 Number of P/T/J Reciprocating/Turboprop/Jet Engines">Type Desc.: </span>
+                  <span class="infoHeading" title="ICAO type description (L/S/H Landplane/Seaplane/Helicopter 1/2/3/4 Number of P/T/J Reciprocating/Turboprop/Jet Engines)">Type Desc.: </span>
                   <span class="infoData" id="selected_typedesc"></span>
                 </td>
               </tr>
@@ -733,7 +738,7 @@
             <progress id="loader_progress"></progress>
           </div>
         </div>
-        <div id="iconTestCanvas" style="background-color:#D2D2D2;display:none;">
+        <div id="iconTestCanvas" style="background-color:#D2D2D2;">
         </div>
 
         <div id="settings_infoblock">
@@ -781,43 +786,58 @@
           <span class=credits-image></span>
           <span class=credits-text>adsbexchange.com</span>
         </div>
-        <div id="header_top" class="infoHeading">
-          <div class="buttonContainer">
-            <span id="U" title="only show the U2 and other military planes" class="button inActiveButton" onclick="toggleMilitary();"><span class="buttonText">U</span></span>
-            <span id="H" title="(H)ome / Reset Map" class="button inActiveButton" onclick="resetMap();"><span class="buttonText">H</span></span>
-            <span id="T" title="All (T)racks" class="button inActiveButton" onclick="selectAllPlanes();"><span class="buttonText">T</span></span>
-          </div>
-        </div>
-        <div id="header_side" class="infoHeading">
+        <div id="header_side">
           <div class="buttonContainer">
             <div id="toggle_sidebar_control">
-              <button id="toggle_sidebar_button" class="show_sidebar sidebar_button " title="Toggle Sidebar"></button>
+              <button id="toggle_sidebar_button" class="show_sidebar mapControl no-invert" title="Toggle Sidebar"><i id="toggle_sidebar_button" class="fas fa-bars"></i></button>
             </div>
-            <div id="expand_sidebar_control">
-              <button id="expand_sidebar_button" class="sidebar_button" title="Expand Sidebar" style="display: none;"></button>
+            
+            <div class="button-hr"></div>
+
+            <button id="U" title="only show the U2 and other military planes" class="mapControl inActiveButton" onclick="toggleMilitary();">U</button>
+            <button id="H" title="(H)ome / Reset Map" class="mapControl inActiveButton" onclick="resetMap();">H</button>
+            <button id="T" title="All (T)racks" class="mapControl inActiveButton" onclick="selectAllPlanes();">T</button>
+
+            <div class="button-hr"></div>
+
+            <button id="L" title="Toggle (L)abels" class="mapControl inActiveButton" onclick="toggleLabels();">L</button>
+            <button id="O" title="Toggle Label Extensi(O)ns" class="mapControl inActiveButton" onclick="toggleExtendedLabels();">O</button>
+            <button id="K" title="Toggle Trac(K) Labels" class="mapControl inActiveButton" onclick="toggleTrackLabels();">K</button>
+            <button style="display: none;" id="B" title="Toggle Map (B)rightness" class="mapControl inActiveButton" onclick="toggles['MapDim'].toggle();">B</button>
+
+            <div class="button-hr"></div>
+
+            <button style="display: none;" id="V" title="Table: only show aircraft in current (V)iew" class="mapControl inActiveButton" onclick="toggleTableInView();">V</button>
+            <button id="M" title="Toggle (M)ultiSelect" class="mapControl inActiveButton" onclick="toggleMultiSelect();">M</button>
+
+            <div class="button-hr"></div>
+
+            <button id="P" title="(P)ersistence mode" class="mapControl inActiveButton" onclick="togglePersistence();">P</button>
+            <button id="I" title="(I)solate: only show selected aircraft" class="mapControl inActiveButton" onclick="toggleIsolation();">I</button>
+
+            <div class="button-hr"></div>
+
+            <button id="R" title="Follow a (R)andom plane" class="mapControl inActiveButton" onclick="followRandomPlane();">R</button>
+            <button id="F" title="(F)ollow" class="mapControl inActiveButton" onclick="toggleFollow();">F</button>
+          </div>
+
+          <div class="buttonContainer split">
+            <div class="ol-zoom ol-unselectable ol-control" style="display: inline-block; position: static;">
+              <button class="ol-zoom-in mapControl" type="button" title="Zoom in"><i class="fas fa-search-plus"></i></button>
+              <button class="ol-zoom-out mapControl" type="button" title="Zoom out"><i class="fas fa-search-minus"></i></button>
             </div>
-            <div id="settingsCog" class="settingsCog"></div>
-            <div id="L" title="Toggle (L)abels" class="button inActiveButton" onclick="toggleLabels();"><span class="buttonText">L</span></div>
-            <div id="O" title="Toggle Label Extensi(O)ns" class="button inActiveButton" onclick="toggleExtendedLabels();"><span class="buttonText">O</span></div>
-            <div id="K" title="Toggle Trac(K) Labels" class="button inActiveButton" onclick="toggleTrackLabels();"><span class="buttonText">K</span></div>
-            <div class="buttonSpacer">
-            </div>
-            <div style="display: none" id="B" title="Toggle Map (B)rightness" class="button inActiveButton" onclick="toggles['MapDim'].toggle();"><span class="buttonText">B</span></div>
-            <div class="buttonSpacer">
-            </div>
-            <div style="display: none" id="V" title="Table: only show aircraft in current (V)iew" class="button inActiveButton" onclick="toggleTableInView();"><span class="buttonText">V</span></div>
-            <div id="M" title="Toggle (M)ultiSelect" class="button inActiveButton" onclick="toggleMultiSelect();"><span class="buttonText">M</span></div>
-            <div class="buttonSpacer">
-            </div>
-            <div id="P" title="(P)ersistence mode" class="button inActiveButton" onclick="togglePersistence();"><span class="buttonText">P</span></div>
-            <div id="I" title="(I)solate: only show selected aircraft" class="button inActiveButton" onclick="toggleIsolation();"><span class="buttonText">I</span></div>
-            <div class="buttonSpacer">
-            </div>
-            <div id="R" title="Follow a (R)andom plane!" class="button inActiveButton" onclick="followRandomPlane();"><span class="buttonText">R</span></div>
-            <div id="F" title="(F)ollow" class="button inActiveButton" onclick="toggleFollow();"><span class="buttonText">F</span></div>
-          <!--< div id="RP" title="Replay" class="button inActiveButton" onclick="showReplayBar();"><span class="buttonText">RP</span></div>-->
+          
+            <div class="button-hr"></div>
+
+            <button title="Replay" class="mapControl inActiveButton" onclick="showReplayBar();"><i class="fas fa-history"></i></button>
+            <button title="Leaderboard" class="mapControl inActiveButton" onclick="openLeaderboard();"><i class="fas fa-trophy"></i></button>
+            
+            <div class="button-hr"></div>
+
+            <button id="settingsCog" title="Settings" class="mapControl"><i class="fas fa-cogs"></i></button>
           </div>
         </div>
+
         <div id="altitude_chart" class="ol-unselectable ol-control altitudeFeet">
           <button id="altitude_chart_button"></button>
         </div>
@@ -838,183 +858,185 @@
       </div> <!-- map_container-->
 
       <div id="sidebar_container" style="display: none">
+
         <div id="splitter" class="ui-resizable-handle ui-resizable-w" style="display: none;"></div>
-        <div id="sidebar_canvas">
+        <!-- <div id="expand_sidebar_control"> -->
+          <button id="expand_sidebar_button" class="expand_sidebar" title="Expand Sidebar" style="display: none;"><i class="fas fa-expand-alt rotate-90"></i></button>
+        <!-- </div> -->
 
-          <div id="sidebar-table">
-            <table style="width: 100%">
-              <tr>
-                <td>
-                  <button id="shrink_sidebar_button" class="shrink_sidebar hidden sidebar_button" title="Show Map"></button>
-                </td>
-              </tr>
+        <button id="collapse_sidebar_button" class="collapse_sidebar" title="Show Map" style="display: none;"><i class="fas fa-compress-alt rotate-90"></i></button>
 
-              <tr id='adsbexchange_header' class="infoblock_row hidden">
-                <td style="text-align: center">
-                  <div>
-                    <span class="largeText">Improve Coverage:<br><a class="largeText" target="_blank" href="https://adsbexchange.com/how-to-feed/">adsbexchange.com</a></span>
-                  </div>
-                  <div class="rSpacer"></div>
-                  <div class="rSpacer"></div>
-                  <div>
-                    <span class="largeText">
-                      <a id="premium_text" class="largeText" href="https://store.adsbexchange.com/pages/subscription">Premium Login: no ads / Sat. Layer</a>
-                    </span>
-                  </div>
-                  <div class="rSpacer"></div>
-                  <div>
-                    <span class="largeText">
-                      <a class="largeText" target="_blank" href="https://adsbexchange.com/faq/">FAQ</a>
-                      &emsp;&emsp;
-                      <a class="largeText" target="_blank" href="https://adsbexchange.com/map-help/">Map Help</a>
-                    </span>
-                  </div>
-                  <div class="rSpacer">
-                  </div>
-                </td>
-              </tr>
-              <tr id="imageConfigHeader" class="infoblock_row hidden">
-                <td style="text-align: center">
-                  <div>
-                    <span class="largeText"><a id="imageConfigLink" class="largeText" target="_blank" href="/">ADSB Feeder Image Config</a></span>
-                  </div>
-                </td>
-              </tr>
+        <div class="banner">
 
-              <tr class="infoblock_heading">
-                <td style="text-align: right" class=link>
-                  <a href="https://github.com/wiedehopf/tar1090#tar1090" id="dump1090_version" target="_blank">tar1090 on github</a>
-                </td>
-              </tr>
-              <tr class="rSpacer">
-                <td></td>
-              </tr>
-              <tr>
-                <td>
-                  <table style="width: 100%">
-                    <tr class="infoblock_heading">
-                      <td style="width: 50%"><span class="infoBlockTitleText">Total Aircraft:</span> <span id="dump1090_total_ac">n/a</span></td>
-                      <td id="dump1090_message_rate_td"><span class="infoBlockTitleText">Messages:</span> <span id="dump1090_message_rate">n/a</span>/sec</td>
-                    </tr>
-                    <tr class="infoblock_body">
-                      <td style="width: 50%"><span id="with_positions" class="infoBlockTitleText">With Position:</span> <span id="dump1090_total_ac_positions">n/a</span></td>
-                      <td id="dump1090_total_history_td"><span class="infoBlockTitleText">History:</span> <span id="dump1090_total_history">n/a</span> positions</td>
-                    </tr>
-                  </table>
-                </td>
-              </tr>
-            </table>
+          <div class="title">Improve Coverage<br><a target="_blank" href="https://adsbexchange.com/how-to-feed/">adsbexchange.com</a></div>
+        
+          <div class="stats">
+            <div class="infoBlockSection">
 
-            <!-- ABOVE_TABS_ANCHOR -->
-
-            <div id="tabs" style="min-height: 10px; overflow: auto">
-              <ul>
-                <li><a href="#tab-search">Search</a></li>
-                <li><a href="#tab-filters">Filters</a></li>
-                <li><a href="#tab-columns">Columns</a></li>
-              </ul>
-              <div id="tab-search">
-                <table id="tab-search-table" cellpadding="0" cellspacing="0">
-                  <tr>
-                    <td>
-                      <form id="search_form">
-                        <div class="infoBlockTitleText">Search:</div>
-                        <input id="search_input" name="searchBox" type="text" class="searchInput" maxlength="128" title="Searches on the hex ID, callsign, registration, and type.">
-                        <button class="formButton" type="submit">Search</button>
-                        <button class="formButton" type="button" id="search_clear_button">Clear Search</button>
-                      </form>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <form id="jump_form">
-                        <div class="infoBlockTitleText">Jump to Airport or Latitude, Longitude:</div>
-                        <input id="jump_input" name="jumpBox" type="text" class="searchInput" maxlength="128" title="Search by airport code like KATL, ZBAA, or LAX">
-                        <button class="formButton" type="submit">Jump</button>
-                        <button class="formButton" type="button" id="jump_clear_button">Clear</button>
-                      </form>
-                    </td>
-                  </tr>
-                </table>
-                <div class="warning" id="search_warning" style="display:none">
-                </div>
+              <div>
+                <div class="infoHeading" id="dump1090_total_ac_td">Total Aircraft</div>
+                <div class="infoData" id="dump1090_total_ac">n/a</div>
               </div>
-              <div id="tab-filters">
-                <table cellpadding="0" cellspacing="0" id="filterTable">
-                  <tbody>
-                    <tr>
-                      <td>
-                        <form id="altitude_filter_form">
-                          <div class="infoBlockTitleText">Filter by altitude:</div>
-                          <input id="altitude_filter_min" name="minAltitude" type="text" class="altitudeFilterInput" maxlength="6">
-                          <label for="altitude_filter_min" class="altitudeUnit"></label>
-                          <span> to </span>
-                          <input id="altitude_filter_max" name="maxAltitude" type="text" class="altitudeFilterInput" maxlength="6">
-                          <label for="altitude_filter_max" class="altitudeUnit"></label>
-                          <button class="formButton" type="submit">Filter</button>
-                          <button class="formButton" id="altitude_filter_reset_button">Reset</button>
-                        </form>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-                <table style="width: 100%" cellpadding="0" cellspacing="0" id="filterTable2">
-                  <tbody>
 
-                    <tr>
-                      <td>
-                        <form id="source_filter_form">
-                          <div class="infoBlockTitleText">Filter by source:</div>
-                          <table>
-                            <tr><td>
-                              <ol id="sourceFilter" class="buttonFilter"></ol>
-                            </td></tr>
-                            <tr><td>
-                              <button class="formButton" type="submit">Filter</button>
-                              <button class="formButton" id="source_filter_reset_button">Reset</button>
-                            </td></tr>
-                          </table>
-                        </form>
-                      </td>
-                    </tr>
+              <div>
+                <div class="infoHeading" id="dump1090_total_ac_positions_td">With Position</div>
+                <div class="infoData" id="dump1090_total_ac_positions">n/a</div>
+              </div>
 
-                    <tr>
-                      <td>
-                        <form id="flag_filter_form">
-                          <div class="infoBlockTitleText">Filter by DB flags:</div>
-                          <table>
-                            <tr><td>
-                              <ol id="flagFilter" class="buttonFilter"></ol>
-                            </td></tr>
-                            <tr><td>
-                              <button class="formButton" type="submit">Filter</button>
-                              <button class="formButton" id="flag_filter_reset_button">Reset</button>
-                            </td></tr>
-                          </table>
-                        </form>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-                <table cellpadding="0" cellspacing="0" id="filterTable3">
-                  <tbody>
-                  </tbody>
-                </table>
+              <div>
+                <div class="infoHeading" id="dump1090_message_rate_td">Messages</div>
+                <div class="infoData" id="dump1090_message_rate">n/a <span class="infoHeading"> /sec</span></div>
               </div>
-              <div id="tab-columns">
-                <ul id="sortableColumns"></ul>
+
+              <div>
+                <div class="infoHeading" id="dump1090_total_history_td">History</div>
+                <div class="infoData" id="dump1090_total_history">n/a <span class="infoHeading"> positions</span></div>
               </div>
+
             </div>
-
-            <table id="planesTable" style="width: 100%">
-            </table>
-
-            <div id="legend" class="legend">
-            </div>
-
-            <!-- BELOW_LEGEND_ANCHOR -->
           </div>
 
+          <div style="text-align: center"><a id="imageConfigLink imageConfigHeader" class="infoblock_row hidden" target="_blank" href="/">ADSB Feeder Image Config</a></div>
+    
+          <div class="navbar">
+            <a href="https://store.adsbexchange.com/pages/subscription"><i class="fas fa-gem"></i>  Premium</a>
+            <a href="https://adsbexchange.com/faq/"><i class="fas fa-question-circle"></i>  FAQ</a>
+            <a href="https://adsbexchange.com/map-help/"><i class="fas fa-map"></i>  Map Help</a>
+            <a href="https://discord.com/invite/ad8SSMpWvH"><i class="fab fa-discord"></i>  Join Discord</a>
+            <a href="https://github.com/wiedehopf/tar1090#tar1090"><i class="fas fa-code-branch"></i>  Github</a>
+          </div>
+        </div>        
+        
+        <div id="sidebar_canvas">  
+
+          <!-- ABOVE_TABS_ANCHOR -->
+          <div id="tabs" style="height: 100%; overflow: auto">
+            <ul>
+              <li><a href="#tab-search">Search</a></li>
+              <li><a href="#tab-filters">Filters</a></li>
+              <li><a href="#tab-columns">Columns</a></li>
+            </ul>
+            
+            <div id="tab-search">
+
+              <div class="formContainer"><form id="search_form">
+                <input id="search_input" name="searchBox" placeholder="Search.." type="text" style="width:50%" maxlength="128" title="Searches on the hex ID, callsign, registration, and type.">
+                <button class="formButton"type="submit">Search</button>
+                <button id="search_clear_button" class="formButton" type="button">Reset</button>
+              </form></div>
+
+              <div class="formContainer"><form id="jump_form">
+                <input id="jump_input" name="jumpBox" placeholder="Jump to.." type="text" style="width:50%" class="searchInput" maxlength="128" title="Search by airport code like KATL, ZBAA, or LAX">
+                <button id="jump_clear_button" class="formButton"type="submit">Jump</button>
+                <button id="search_clear_button" class="formButton" type="button">Reset</button>
+              </form></div>
+
+              <div class="warning" id="search_warning" style="display:none">
+              </div>
+            </div> <!-- end search tab -->
+
+            <div id="tab-filters">
+
+              <div class="formContainer"><form id="altitude_filter_form">
+                <div class="category">Altitude</div>
+                  <input id="altitude_filter_min" name="minAltitude" type="text" placeholder="Minimum..." maxlength="6">
+                  <label for="altitude_filter_min" class="altitudeUnit"></label><span> to </span>
+                  <input id="altitude_filter_max" name="maxAltitude" type="text" placeholder="Maximum..." maxlength="6">
+                  <label for="altitude_filter_max" class="altitudeUnit"></label>  
+                  <button class="formButton" type="submit"><i class="fas fa-filter"></i></button>
+                  <button class="formButton" id="altitude_filter_reset_button"><i class="fas fa-times"></i></button>
+              </form></div>
+
+              <div class="formContainer"><form id="filters_callsign">
+                <div class="category">Callsign</div>
+                  <input id="filters-callsign-input" name="filters-callsign-name" type="text" placeholder="..." maxlength="1024"> 
+                  <button class="formButton" type="submit"><i class="fas fa-filter"></i></button>
+                  <button class="formButton" id="filter_callsign_reset"><i class="fas fa-times"></i></button>
+              </form></div>
+              
+              <div class="formContainer"><form id="filters_squawk">
+                <div class="category">Squawk</div>
+                <input id="filters_squawk_input" name="filters_squawk_name" type="text" placeholder="..."  maxlength="1024">
+                <button class="formButton" type="submit"><i class="fas fa-filter"></i></button>
+                <button class="formButton" id="filters_squawk_reset"><i class="fas fa-times"></i></button>
+              </form></div>
+
+              <div class="formContainer"><form id="filters_type">
+                <div class="category">Type code</div>
+                <input id="filters_type_input" name="filters_type_name" type="text" placeholder="..."  maxlength="1024">
+                <button class="formButton" type="submit"><i class="fas fa-filter"></i></button>
+                <button class="formButton" id="filters_type_reset"><i class="fas fa-times"></i></button>
+              </form></div>
+
+              <div class="formContainer"><form id="filters_description">
+                <div class="category">Type descr.</div>
+                <input id="filters_description_input" name="filters_description_name" type="text" placeholder="..."  maxlength="1024">
+                <button class="formButton" type="submit"><i class="fas fa-filter"></i></button>
+                <button class="formButton" id="filters_description_reset"><i class="fas fa-times"></i></button>
+              </form></div>
+
+              <div class="formContainer"><form id="filters_icao">
+                <div class="category">ICAO HEX ID</div>
+                <input id="filters_icao_input" name="filters_icao_name" type="text" placeholder="..."  maxlength="1024">
+                <button class="formButton" type="submit"><i class="fas fa-filter"></i></button>
+                <button class="formButton" id="filters_icao_reset"><i class="fas fa-times"></i></button>
+              </form></div>
+
+              
+              <table style="width: 100%" cellpadding="0" cellspacing="0" id="filterTable2">
+                <tbody>
+                  <tr>
+                    <td>
+                      <form id="source_filter_form" class="formContainer">
+                        <div class="category">Source</div>
+                        <table>
+                          <tr><td>
+                            <ol id="sourceFilter" class="buttonFilter"></ol>
+                          </td></tr>
+                          <tr><td>
+                            <button class="formButton" type="submit"><i class="fas fa-filter"></i></button>
+                            <button class="formButton" id="source_filter_reset_button"><i class="fas fa-times"></i></button>
+                          </td></tr>
+                        </table>
+                      </form>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>
+                      <form id="flag_filter_form" class="formContainer">
+                        <div class="category">Database flags</div>
+                        <table>
+                          <tr><td>
+                            <ol id="flagFilter" class="buttonFilter"></ol>
+                          </td></tr>
+                          <tr><td>
+                            <button class="formButton" type="submit"><i class="fas fa-filter"></i></button>
+                            <button class="formButton" id="flag_filter_reset_button"><i class="fas fa-times"></i></button>
+                          </td></tr>
+                        </table>
+                      </form>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <table cellpadding="0" cellspacing="0" id="filterTable3">
+                <tbody>
+                </tbody>
+              </table>
+            </div>
+
+            <div id="tab-columns">
+              <ul id="sortableColumns"></ul>
+            </div>
+          </div>
+
+          <table id="planesTable" style="width: 100%">
+          </table>
+
+          <div id="legend" class="legend">
+          </div>
+          <!-- BELOW_LEGEND_ANCHOR -->
         </div> <!-- sidebar_canvas -->
 
       </div> <!-- sidebar_container -->
@@ -1062,6 +1084,7 @@
 
     <!-- JS_ANCHOR3 -->
     <script src="planeObject.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js" integrity="sha512-Tn2m0TIpgVyTzzvmxLNuqbSJH3JP8jm+Cy3hvHrW7ndTDcJ1w5mBiksqDBb8GpE2ksktFvDB/ykZ0mDpsZj20w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="script.js"></script>
 
     <link rel="preload" as="image" crossOrigin="anonymous" href="images/sprites.png">
