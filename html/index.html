@@ -789,7 +789,7 @@
         <div id="header_side">
           <div class="buttonContainer">
             <div id="toggle_sidebar_control">
-              <button id="toggle_sidebar_button" class="show_sidebar mapControl no-invert" title="Toggle Sidebar"><i id="toggle_sidebar_button" class="fas fa-bars"></i></button>
+              <button id="toggle_sidebar_button" class="show_sidebar mapControl no-invert" title="Toggle Sidebar"></button>
             </div>
             
             <div class="button-hr"></div>
@@ -857,14 +857,16 @@
 
       </div> <!-- map_container-->
 
-      <div id="sidebar_container" style="display: none">
+      <div id="sidebar_container" style="display: ;">
 
-        <div id="splitter" class="ui-resizable-handle ui-resizable-w" style="display: none;"></div>
-        <!-- <div id="expand_sidebar_control"> -->
-          <button id="expand_sidebar_button" class="expand_sidebar" title="Expand Sidebar" style="display: none;"><i class="fas fa-expand-alt rotate-90"></i></button>
-        <!-- </div> -->
+        
+        <div class="windowControlContainer">
+          <div id="expand_sidebar_control">
+            <button id="expand_sidebar_button" class="expand_sidebar windowControl" title="Expand Sidebar" style="display: ;"><i class="fas fa-expand-alt rotate-90"></i></button>
+          </div>
+        </div>
 
-        <button id="collapse_sidebar_button" class="collapse_sidebar" title="Show Map" style="display: none;"><i class="fas fa-compress-alt rotate-90"></i></button>
+        <button id="collapse_sidebar_button" class="collapse_sidebar windowControl hidden" title="Show Map" style="display: none;"><i class="fas fa-compress-alt rotate-90"></i></button>
 
         <div class="banner">
 
@@ -908,6 +910,8 @@
         </div>        
         
         <div id="sidebar_canvas">  
+
+          <div id="splitter" class="ui-resizable-handle ui-resizable-w" style="display: ;"></div>
 
           <!-- ABOVE_TABS_ANCHOR -->
           <div id="tabs" style="height: 100%; overflow: auto">

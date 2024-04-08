@@ -4301,13 +4301,13 @@ function expandSidebar(e) {
     e.preventDefault();
     jQuery("#map_container").hide()
     mapIsVisible = false;
-    // jQuery("#toggle_sidebar_control").hide();
-    jQuery("#splitter").hide();
+    jQuery("#toggle_sidebar_control").show();
+    jQuery("#splitter").show();
     jQuery("#collapse_sidebar_button").show();
     jQuery("#sidebar_container").width("100%");
-    var icon = document.querySelector('#toggle_sidebar_button i'); // Select the icon element
-            icon.classList.remove(fa-times); // Remove previous icon classes
-            icon.classList.add(fa-bars); // Add new icon classes
+//    var icon = document.querySelector('#toggle_sidebar_button i'); // Select the icon element
+//            icon.classList.add(fa-times); // Add new icon classes
+//            icon.classList.remove(fa-bars); // Remove previous icon classes
     TAR.planeMan.redraw();
     updateMapSize();
     adjustInfoBlock();
@@ -4317,12 +4317,13 @@ function showMap() {
     jQuery('#sidebar_container').width(loStore['sidebar_width']).css('margin-left', '0');
     jQuery("#map_container").show()
     mapIsVisible = true;
-    // jQuery("#toggle_sidebar_control").show();
+    jQuery("#toggle_sidebar_control").show();
     jQuery("#splitter").show();
     jQuery("#collapse_sidebar_button").hide();
-    var icon = document.querySelector('#toggle_sidebar_button i'); // Select the icon element
-            icon.classList.remove(fa-times); // Remove previous icon classes
-            icon.classList.add(fa-bars); // Add new icon classes
+    jQuery("#expand_sidebar_button").show();
+//    var icon = document.querySelector('#toggle_sidebar_button i'); // Select the icon element
+//        icon.classList.add(fa-times); // Add new icon classes
+//        icon.classList.remove(fa-bars); // Remove previous icon classes
     TAR.planeMan.redraw();
     updateMapSize();
 }

@@ -136,6 +136,13 @@ button.windowControl:hover {
     opacity: 1;
 }
 
+.windowControlContainer {
+    display: inline-block;
+    position: absolute;
+    height: calc( 30px * var(--SCALE));
+    width: calc( 80px * var(--SCALE));
+}
+
 .left {
     left: calc( 20px * var(--SCALE));
 }
@@ -277,6 +284,14 @@ button.mapControl {
     color: var(--ACCENT);
 }
 
+#toggle_sidebar_button .show_sidebar {
+    background-image: url(image/bars-solid.svg)
+}
+
+#toggle_sidebar_button .hide_sidebar {
+    background-image: url(image/window-close-regular.svg)
+}
+
 .buttonText {
     font-weight: bold;
     font-size: var(--FS3);
@@ -284,6 +299,10 @@ button.mapControl {
     text-align: center;
     margin: calc( 5px * var(--SCALE));
     color: inherit;
+}
+
+button.Legend {
+    background-image: url(images/layer-group-solid.svg);
 }
 
 .activeButton {
@@ -559,7 +578,7 @@ table.infoSectionTable tr td {
 /*  SIDEBAR CONTAINER  ##################################################### */
 
 #sidebar_container {
-    display: flex;
+    display: fixed;
     flex-direction: column;
     left: calc( 0px * var(--SCALE)) !important;
     background-color: var(--BGCOLOR1);
@@ -573,6 +592,21 @@ table.infoSectionTable tr td {
     height: 100%;
     background-color: var(--BGCOLOR1);
     padding-left: calc( 16px * var(--SCALE));
+}
+
+#splitter-infoblock {
+    cursor: ns-resize;
+    display: inline-block;
+    position: relative;
+    top: calc( 0px * var(--SCALE));
+    right: 0;
+    margin-left: auto;
+    width: 10%;
+    height: 100%;
+    background-size: calc( 24px * var(--SCALE));
+    background-repeat: no-repeat;
+    background-position: calc( 0px * var(--SCALE));
+    border: none;
 }
 
 #splitter {
@@ -596,33 +630,17 @@ table.infoSectionTable tr td {
     opacity: 1;
 }
 
-/*#splitter-infoblock {
-    cursor: ns-resize;
-    display: inline-block;
-    position: absolute;
-    top: calc( 0px * var(--SCALE));
-    right: 0;
-    margin-left: auto;
-    width: calc( 24px * var(--SCALE));
-    height: calc( 4px * var(--SCALE));
-    background-size: calc( 24px * var(--SCALE)) calc( 25px * var(--SCALE));
-    background-repeat: no-repeat;
-    background-position: calc( 0px * var(--SCALE));
-    border: none;
-    width: 100%;
-}*/
-
 #collapse_sidebar_button {
     position: absolute;
     transform: rotate(90deg);
-    top: calc( 8px * var(--SCALE));
-    left: calc( 8px * var(--SCALE));
+    top: calc( 20px * var(--SCALE));
+    left: calc( 20px * var(--SCALE));
     background-size: calc( 34px * var(--SCALE)) calc( 35px * var(--SCALE));
     background-color: transparent;
-    color: var(--BGCOLOR1);
+    color: #ff00ff;
     background-repeat: no-repeat;
     background-position: center;
-    display: static;
+    display: inline-block;
     cursor: pointer;
     text-align: center;
 }
@@ -633,7 +651,7 @@ table.infoSectionTable tr td {
     top: calc( 30px * var(--SCALE));
     left: calc( 30px * var(--SCALE));
     background-color: transparent;
-    color: var(--BGCOLOR1);
+    color: #ff00ff;
     background-repeat: no-repeat;
     background-position: center;
     display: inline-block;
