@@ -1107,7 +1107,7 @@ function initPage() {
 
     // Set up event handlers for buttons
     jQuery("#expand_sidebar_button").click(expandSidebar);
-    jQuery("#shrink_sidebar_button").click(showMap);
+    jQuery("#collapse_sidebar_button").click(showMap);
 
     // Set up altitude filter button event handlers and validation options
     jQuery("#altitude_filter_form").submit(onFilterByAltitude);
@@ -1468,6 +1468,9 @@ jQuery('#selected_altitude_geom1')
                 jQuery("#expand_sidebar_button").show();
                 jQuery("#toggle_sidebar_button").removeClass("show_sidebar");
                 jQuery("#toggle_sidebar_button").addClass("hide_sidebar");
+                var icon = document.querySelector('#toggle_sidebar_button i'); // Select the icon element
+                icon.classList.remove('fa-bars'); // Remove previous icon classes
+                icon.classList.add('fa-times'); // Add new icon classes
                 if (!g.sidebar_initiated) {
                     g.sidebar_initiated = true;
                     // Set up map/sidebar splitter
@@ -1499,6 +1502,9 @@ jQuery('#selected_altitude_geom1')
                     jQuery("#toggle_sidebar_button").removeClass("hide_sidebar");
                     jQuery("#toggle_sidebar_button").addClass("show_sidebar");
                 }
+                var icon = document.querySelector('#toggle_sidebar_button i'); // Select the icon element
+                icon.classList.remove('fa-times'); // Remove previous icon classes
+                icon.classList.add('fa-bars'); // Add new icon classes
             }
             if (loadFinished) {
                 updateMapSize();
@@ -4295,10 +4301,13 @@ function expandSidebar(e) {
     e.preventDefault();
     jQuery("#map_container").hide()
     mapIsVisible = false;
-    jQuery("#toggle_sidebar_control").hide();
+    // jQuery("#toggle_sidebar_control").hide();
     jQuery("#splitter").hide();
-    jQuery("#shrink_sidebar_button").show();
+    jQuery("#collapse_sidebar_button").show();
     jQuery("#sidebar_container").width("100%");
+    var icon = document.querySelector('#toggle_sidebar_button i'); // Select the icon element
+            icon.classList.remove(fa-times); // Remove previous icon classes
+            icon.classList.add(fa-bars); // Add new icon classes
     TAR.planeMan.redraw();
     updateMapSize();
     adjustInfoBlock();
@@ -4308,9 +4317,12 @@ function showMap() {
     jQuery('#sidebar_container').width(loStore['sidebar_width']).css('margin-left', '0');
     jQuery("#map_container").show()
     mapIsVisible = true;
-    jQuery("#toggle_sidebar_control").show();
+    // jQuery("#toggle_sidebar_control").show();
     jQuery("#splitter").show();
-    jQuery("#shrink_sidebar_button").hide();
+    jQuery("#collapse_sidebar_button").hide();
+    var icon = document.querySelector('#toggle_sidebar_button i'); // Select the icon element
+            icon.classList.remove(fa-times); // Remove previous icon classes
+            icon.classList.add(fa-bars); // Add new icon classes
     TAR.planeMan.redraw();
     updateMapSize();
 }

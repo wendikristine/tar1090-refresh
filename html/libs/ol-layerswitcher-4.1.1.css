@@ -84,8 +84,8 @@
 .layer-switcher li.group + li.group {
   margin-top: 0.4em;
 }
-.layer-switcher li.group + li.layer-switcher-base-group {
-}
+/*.layer-switcher li.group + li.layer-switcher-base-group {
+}*/
 
 .layer-switcher li.group > label {
   font-weight: bold;
