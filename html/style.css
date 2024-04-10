@@ -124,8 +124,8 @@ button.windowControl {
     top: calc( 8px * var(--SCALE));
     background-repeat: no-repeat;
     background-size: cover;
-    width: calc( 20px * var(--SCALE));
-    height: calc( 20px * var(--SCALE));
+    width: calc( 30px * var(--SCALE));
+    height: calc( 30px * var(--SCALE));
     cursor: pointer;
     background-position: center;
     z-index: 99;
@@ -140,7 +140,7 @@ button.windowControl:hover {
     display: inline-block;
     position: absolute;
     height: calc( 30px * var(--SCALE));
-    width: calc( 80px * var(--SCALE));
+    width: calc( 30px * var(--SCALE));
 }
 
 .left {
@@ -240,7 +240,7 @@ button.windowControl:hover {
 .split {
     bottom: 0;
     position: absolute;
-    padding-bottom: calc( 8px * var(--SCALE));
+    padding-bottom: calc( 6px * var(--SCALE));
 }
 
 .buttonSpacer {
@@ -251,8 +251,8 @@ button.windowControl:hover {
     height: calc( 1.5px * var(--SCALE));
     opacity: 0.5;
     margin: auto;
-    margin-top: 3px;
-    margin-bottom: 3px;
+    margin-top: calc( 3px * var(--SCALE));
+    margin-bottom: calc( 3px * var(--SCALE));
     width: 70%;
     background-color: var(--BGCOLOR1);
 }
@@ -264,6 +264,7 @@ button.mapControl {
     outline: none;
     width: calc( 30px * var(--SCALE));
     height: calc( 30px * var(--SCALE));
+    left: 0;
     border-radius: calc( 2px * var(--SCALE));
     /*background-size: 90%;*/
     background-repeat: no-repeat;
@@ -591,7 +592,7 @@ table.infoSectionTable tr td {
     /*overflow: auto;*/
     height: 100%;
     background-color: var(--BGCOLOR1);
-    padding-left: calc( 16px * var(--SCALE));
+    padding-left: calc( 15px * var(--SCALE));
 }
 
 #splitter-infoblock {
@@ -611,18 +612,18 @@ table.infoSectionTable tr td {
 
 #splitter {
     cursor: col-resize;
-    position: absolute;
+    position: relative;
     z-index: 99;
     width: 8px;
-    height: 50%;
+    height: 40%;
     background-color: var(--PRIMARY);
     opacity: 0.7;
     box-shadow: calc( 1px * var(--SCALE)) calc( 1px * var(--SCALE)) calc( 3px * var(--SCALE)) var(--SHADOW);
-    margin-left: 12px;
+    margin-left: 0px;
     border: none;
     border-radius: 10px;
-    display: flex;
-    transform: translate(0, 50%);
+    display: block;
+    transform: translate(0, 80%);
 }
 
 #splitter:hover {
@@ -633,11 +634,10 @@ table.infoSectionTable tr td {
 #collapse_sidebar_button {
     position: absolute;
     transform: rotate(90deg);
-    top: calc( 20px * var(--SCALE));
-    left: calc( 20px * var(--SCALE));
-    background-size: calc( 34px * var(--SCALE)) calc( 35px * var(--SCALE));
+    top: calc( 3px * var(--SCALE));
+    left: calc( 3px * var(--SCALE));
     background-color: transparent;
-    color: #ff00ff;
+    color: var(--BGCOLOR1);
     background-repeat: no-repeat;
     background-position: center;
     display: inline-block;
@@ -648,10 +648,10 @@ table.infoSectionTable tr td {
 #expand_sidebar_button {
     position: absolute;
     transform: rotate(90deg);
-    top: calc( 30px * var(--SCALE));
-    left: calc( 30px * var(--SCALE));
+    top: calc( 3px * var(--SCALE));
+    left: calc( 40px * var(--SCALE));
     background-color: transparent;
-    color: #ff00ff;
+    color: var(--BGCOLOR1);
     background-repeat: no-repeat;
     background-position: center;
     display: inline-block;
@@ -663,6 +663,7 @@ table.infoSectionTable tr td {
     background-color: var(--PRIMARY);
     padding: calc( 15px * var(--SCALE));
     top: 0;
+    left: 0;
     width: 100%;
     position: -webkit-sticky; 
     position: sticky;
@@ -672,7 +673,7 @@ table.infoSectionTable tr td {
 .banner .title {
     text-transform: capitalize;
     text-align: right;
-    width: 45%;
+    width: 35%;
     padding-right: calc( 15px * var(--SCALE));
     vertical-align: middle;
     color: var(--BGCOLOR1);
@@ -688,7 +689,7 @@ table.infoSectionTable tr td {
 }
 
 .banner .stats {
-    width: 40%;
+    width: 25%;
     padding-left: calc( 5px * var(--SCALE));
     border-left-width: calc( 2px * var(--SCALE));
     border-left-style: solid;
@@ -778,7 +779,6 @@ table.infoSectionTable tr td {
     font-size: calc( 14px * var(--SCALE));
     border: solid;
     border-color: var(--BGCOLOR2);
-    margin-top: calc( 5px * var(--SCALE));
     border-radius: 0px;
 }
 
@@ -819,7 +819,7 @@ input::placeholder {
     list-style-type: none;
     margin: 0;
     padding: 0;
-    width: calc( 240px * var(--SCALE));
+    width: calc( 350px * var(--SCALE));
     cursor: pointer;
 }
 
@@ -842,6 +842,10 @@ input::placeholder {
     color:var(--TXTCOLOR2);
     background-color: var(--BGCOLOR2);
     border-color: var(--BGCOLOR1);
+}
+
+#altitude_filter_form > span {
+    white-space: pre;
 }
 
 #sortableColumns {
@@ -892,7 +896,7 @@ input::placeholder {
     height: var(--FS2);
 }
 
-/* not the layer switcher, but the colored blocks below the planes table */
+/* not the layer switcher, but the colored blocks below the plane table */
 .legend {
     font-size: 110%;
     color:var(--TXTCOLOR2);
@@ -1157,7 +1161,7 @@ select {
 }
 
 .ui-tabs .ui-tabs-nav {
-    padding: 2px;
+    padding: 4px;
     margin: 1px;
     margin-bottom: 1px;
 }
@@ -1228,21 +1232,29 @@ button.ol-control {
 
 .layer-switcher {
     background-repeat: no-repeat;
-    background-size: 80%;
     background-position: center;
     cursor: pointer;
-    top: calc( 9px * var(--SCALE)) !important;
-    right: calc( 150px * var(--SCALE)) !important;
+    position: relative;
+    display: inline-block;
+    background-color: transparent;
+    top: auto !important;
+    right: auto !important;
     z-index: 999;
 }
 
 .layer-switcher button {
-    background-size: calc( 26px * var(--SCALE)) calc( 26px * var(--SCALE));
     background-repeat: no-repeat;
     background-position: center;
+    /*background-size: 80%;*/
+    cursor: pointer;
+    position: relative;
+    display: inline-block;
     width: calc( 30px * var(--SCALE));
     height: calc( 30px * var(--SCALE));
-    background-image: url(libs/font-awesome/svgs/solid/layer-group.svg);
+    color: var(--BGCOLOR1);
+    background-color: transparent;
+    background-image: unset;
+    outline: none;
 }
 
 .layer-switcher .shown {
@@ -1266,8 +1278,9 @@ button.ol-control {
 
 .layer-switcher button:focus,
 .layer-switcher button:hover {
-  border: none;
-  outline: none;
+    border: none;
+    outline: none;
+    background-color: transparent;
 }
 
 .layer-switcher.shown.ol-control {
@@ -1281,14 +1294,13 @@ button.ol-control {
 
 .layer-switcher.shown.layer-switcher-activation-mode-click > button {
     display: absolute;
-    background-image: url(libs/font-awesome/svgs/solid/times.svg);
+    /*background-image: url(images/times.svg);*/
     color: var(--TXTCOLOR3);
-    opacity: 0.6;
 }
 
 .layer-switcher .group button {
     background-color: transparent;
-    background-image: url(../images/chevron-down-solid.svg);
+    /*background-image: url(images/chevron-down-solid.svg);*/
 }
 
 .layer-switcher.shown.layer-switcher-activation-mode-click {
