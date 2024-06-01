@@ -9,6 +9,7 @@ Sadly, this is a dead fork.
      - vertical, useful for mobile?
      - map dark mode with white instead of black. I also considered a script that would change the black HEX to white HEX in the SVG when the user selects a dark map. 
   - HTML/CSS - self-explanatory. For an easy diff, see [PR301](https://github.com/wiedehopf/tar1090/pull/301)
+  - Misc
 
 ### 2. dev work in context, phase 1: `clean-up-before-real-work` branch
 
