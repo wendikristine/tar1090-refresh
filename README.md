@@ -1,9 +1,20 @@
-### This is a dead fork
+Sadly, this is a dead fork.
 
-# Assets for ads-b exchange production team
-*All found in `PROD_ASSETS` root-level folder*
-1. Icons - self-explanatory
-3. Graphics - 
-4. CSS
-5. JS
-6. 
+# Content for prod team can be found found in three places
+
+### 1. On the `master` branch, in the `PROD_ASSETS` root-level folder
+
+  - Icons - self-explanatory. note that each SVG file will look empty because the icons are white against a transparent background
+  - Graphics - created additional versions of the altitude legend.
+     - vertical, useful for mobile?
+     - map dark mode with white instead of black. I also considered a script that would change the black HEX to white HEX in the SVG when the user selects a dark map. 
+  - HTML/CSS - self-explanatory. For an easy diff, see [PR301](https://github.com/wiedehopf/tar1090/pull/301)
+
+### 2. dev work in context, phase 1: `clean-up-before-real-work` branch
+
+### 3. dev work in context, phase 2: `map-controls` branch, although work was not complete
+
+
+
+
+
